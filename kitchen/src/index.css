@@ -1,0 +1,82 @@
+@import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Inter:wght@100..900&display=swap');
+
+:root {
+  --brand-bg: #FDFCF6;
+  --brand-ink: #1C1C1C;
+  --brand-sage: #3D4B3E;
+  --brand-copper: #A66042;
+  --glass-bg: rgba(255, 255, 255, 0.8);
+  --card-bg: #FFFFFF;
+}
+
+.dark {
+  --brand-bg: #0A0A0A;
+  --brand-ink: #FDFCF6;
+  --brand-sage: #5A6A5B;
+  --brand-copper: #C47D5C;
+  --glass-bg: rgba(10, 10, 10, 0.8);
+  --card-bg: #141414;
+}
+
+@theme {
+  --color-brand-bg: var(--brand-bg);
+  --color-brand-ink: var(--brand-ink);
+  --color-brand-sage: var(--brand-sage);
+  --color-brand-copper: var(--brand-copper);
+  
+  --font-serif: "Cormorant Garamond", serif;
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+}
+
+@layer base {
+  body {
+    @apply bg-brand-bg text-brand-ink font-sans transition-colors duration-500;
+    -webkit-tap-highlight-color: transparent;
+  }
+}
+
+@layer utilities {
+  .btn-primary {
+    @apply px-8 py-4 bg-brand-ink text-brand-bg rounded-full text-[10px] font-bold uppercase tracking-[0.2em] flex items-center justify-center gap-3 transition-all duration-500 hover:translate-y-[-2px] hover:shadow-xl active:translate-y-[0px] border-none outline-none cursor-pointer;
+  }
+
+  .btn-secondary {
+    @apply px-8 py-4 bg-brand-copper text-white rounded-full text-[10px] font-bold uppercase tracking-[0.2em] flex items-center justify-center gap-3 transition-all duration-500 hover:translate-y-[-2px] hover:shadow-xl border-none outline-none cursor-pointer;
+  }
+
+  .card {
+    @apply bg-[var(--card-bg)] rounded-[40px] p-10 border border-brand-ink/5 shadow-[0_20px_60px_rgba(0,0,0,0.03)] transition-all duration-500;
+  }
+
+  .dark .card {
+    @apply shadow-[0_20px_60px_rgba(0,0,0,0.4)];
+  }
+
+  .editorial-border {
+    @apply h-px w-full bg-gradient-to-r from-transparent via-brand-ink/10 to-transparent my-12;
+  }
+
+  .heading-serif {
+    @apply font-serif italic tracking-tight;
+  }
+
+  .neo-input {
+    @apply bg-[var(--card-bg)] rounded-2xl p-4 border border-brand-ink/10 outline-none text-sm text-brand-ink placeholder:text-brand-ink/30 focus:border-brand-sage transition-colors shadow-inner;
+  }
+}
+
+@keyframes fade-in {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fade-in {
+  animation: fade-in 0.4s ease-out forwards;
+}
+
+.glass {
+  background: var(--glass-bg);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
